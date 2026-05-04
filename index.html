@@ -891,47 +891,51 @@
     // ── MERCH LIKES ──
     var SESSION_KEY = 'mvd-liked';
     var liked = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}');
+    var BIN_ID = '69f7f43faaba8821976a2a01';
+    var BIN_KEY = '$2a$10$PCty3llvdldKt7aZWar82.myung/dgtHwjhBa4wzRYgMWDyU61Zge';
+    var BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
+    var counts = {tee: 0, hat: 0};
 
     function loadCounts() {
-      ['tee','hat'].forEach(function(item) {
-        fetch('https://api.countapi.xyz/get/minivandad-merch-2024/' + item)
-          .then(function(r){ return r.json(); })
-          .then(function(d){
-            var el = document.getElementById('like-count-' + item);
-            if (el && d.value !== undefined) el.textContent = d.value;
-          }).catch(function(){});
-      });
+      fetch(BIN_URL + '/latest', {
+        headers: { 'X-Master-Key': BIN_KEY }
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        counts = d.record || {tee:0, hat:0};
+        ['tee','hat'].forEach(function(item) {
+          var btn = document.getElementById('like-btn-' + item);
+          if (!btn) return;
+          if (liked[item]) {
+            btn.innerHTML = '&#10084; ' + counts[item];
+            btn.style.background = '#e2700c';
+            btn.style.color = '#fff';
+            btn.disabled = true;
+          } else {
+            btn.innerHTML = '&#9825; ' + counts[item];
+          }
+        });
+      }).catch(function(){});
     }
 
     function handleLike(item, btn) {
       if (liked[item]) return;
       liked[item] = true;
       sessionStorage.setItem(SESSION_KEY, JSON.stringify(liked));
-      btn.innerHTML = '&#10084; ...';
+      counts[item] = (counts[item] || 0) + 1;
+      btn.innerHTML = '&#10084; ' + counts[item];
       btn.style.background = '#e2700c';
       btn.style.color = '#fff';
       btn.disabled = true;
-      fetch('https://api.countapi.xyz/hit/minivandad-merch-2024/' + item)
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          btn.innerHTML = '&#10084; ' + (d && d.value !== undefined ? d.value : '');
-        }).catch(function(){
-          btn.innerHTML = '&#10084;';
-        });
+      fetch(BIN_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': BIN_KEY
+        },
+        body: JSON.stringify(counts)
+      }).catch(function(){});
     }
-
-    // Apply liked state on load
-    ['tee','hat'].forEach(function(item) {
-      if (liked[item]) {
-        setTimeout(function() {
-          var btn = document.getElementById('like-btn-' + item);
-          if (!btn) return;
-          btn.style.background = '#e2700c';
-          btn.style.color = '#fff';
-          btn.disabled = true;
-        }, 100);
-      }
-    });
 
     loadCounts();
 
