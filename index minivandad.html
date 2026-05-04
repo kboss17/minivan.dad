@@ -706,7 +706,12 @@
           <div class="merch-name">Graphic tee</div>
           <div class="merch-tag">Various designs</div>
           <div class="merch-price">$30</div>
-          <button class="merch-btn">Add to cart</button>
+          <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+            <button class="merch-btn" style="margin-top:0;">Add to cart</button>
+            <button id="like-btn-tee" onclick="handleLike('tee', this)" style="background:#555; border:none; border-radius:20px; padding:7px 16px; cursor:pointer; display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12px; color:#f4ede0; transition:all 0.2s;">
+              &#9825; <span id="like-count-tee">0</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -723,9 +728,13 @@
           <div class="merch-name">Dad hat</div>
           <div class="merch-tag">One size · adjustable</div>
           <div class="merch-price">$25</div>
-          <button class="merch-btn">Add to cart</button>
+          <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
+            <button class="merch-btn" style="margin-top:0;">Add to cart</button>
+            <button id="like-btn-hat" onclick="handleLike('hat', this)" style="background:#555; border:none; border-radius:20px; padding:7px 16px; cursor:pointer; display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12px; color:#f4ede0; transition:all 0.2s;">
+              &#9825; <span id="like-count-hat">0</span>
+            </button>
+          </div>
         </div>
-      </div>
 
     </div>
   </section>
@@ -878,6 +887,53 @@
       }
       tick();
     })();
+
+    // ── MERCH LIKES ──
+    var SESSION_KEY = 'mvd-liked';
+    var liked = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}');
+
+    function loadCounts() {
+      ['tee','hat'].forEach(function(item) {
+        fetch('https://api.countapi.xyz/get/minivandad-merch-2024/' + item)
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            var el = document.getElementById('like-count-' + item);
+            if (el && d.value !== undefined) el.textContent = d.value;
+          }).catch(function(){});
+      });
+    }
+
+    function handleLike(item, btn) {
+      if (liked[item]) return;
+      liked[item] = true;
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(liked));
+      btn.innerHTML = '&#10084; ...';
+      btn.style.background = '#e2700c';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+      fetch('https://api.countapi.xyz/hit/minivandad-merch-2024/' + item)
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          btn.innerHTML = '&#10084; ' + (d && d.value !== undefined ? d.value : '');
+        }).catch(function(){
+          btn.innerHTML = '&#10084;';
+        });
+    }
+
+    // Apply liked state on load
+    ['tee','hat'].forEach(function(item) {
+      if (liked[item]) {
+        setTimeout(function() {
+          var btn = document.getElementById('like-btn-' + item);
+          if (!btn) return;
+          btn.style.background = '#e2700c';
+          btn.style.color = '#fff';
+          btn.disabled = true;
+        }, 100);
+      }
+    });
+
+    loadCounts();
 
     function togglePlayer(id, src) {
       var players = ['player-1','player-2','player-3','player-4'];
