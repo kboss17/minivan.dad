@@ -202,6 +202,12 @@
       border: 0.5px solid rgba(60,60,60,0.12);
       border-radius: 8px;
       overflow: hidden;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .track:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
     }
 
     .track-art {
@@ -593,80 +599,8 @@
   <!-- MUSIC -->
   <section id="music">
     <div class="sec-label">Top tracks</div>
-    <div class="music-grid">
 
-      <div class="track">
-        <img class="track-art" src="https://i.scdn.co/image/ab67616d0000b273d43720995af603814ef9b665" alt="Sleeping In artwork" onerror="this.style.background='#e8ddc8';this.style.minHeight='180px';this.removeAttribute('src')" />
-        <div class="track-body">
-          <div class="track-num">01</div>
-          <div class="track-title">Sleeping In</div>
-          <div class="track-sub">Single · 2022</div>
-          <button class="play-btn" onclick="togglePlayer('player-1','https://open.spotify.com/embed/track/2r3abv0suLfXCIOL9MiZ06?utm_source=generator&theme=0')">
-            <svg width="10" height="12" viewBox="0 0 10 12" fill="white"><polygon points="0,0 10,6 0,12"/></svg>
-          </button>
-        </div>
-        <div id="player-1" style="display:none; height:80px; overflow:hidden;">
-          <iframe style="border-radius:0;width:100%;height:80px;border:none;" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
-
-      <div class="track">
-        <img class="track-art" src="https://i.scdn.co/image/ab67616d0000b2732fb346cb127d8218bcb065d5" alt="rare and raw artwork" onerror="this.style.background='#e8ddc8';this.style.minHeight='180px';this.removeAttribute('src')" />
-        <div class="track-body">
-          <div class="track-num">02</div>
-          <div class="track-title">rare and raw</div>
-          <div class="track-sub">EP · 2023</div>
-          <button class="play-btn" onclick="togglePlayer('player-2','https://open.spotify.com/embed/track/69GcEGjRiHq6zyhFhUJEuL?utm_source=generator&theme=0')">
-            <svg width="10" height="12" viewBox="0 0 10 12" fill="white"><polygon points="0,0 10,6 0,12"/></svg>
-          </button>
-        </div>
-        <div id="player-2" style="display:none; height:80px; overflow:hidden;">
-          <iframe style="border-radius:0;width:100%;height:80px;border:none;" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
-
-      <div class="track">
-        <img class="track-art" src="https://i.scdn.co/image/ab67616d0000b273d71b755f93f3304c9364957e" alt="Trying To Be Nice artwork" onerror="this.style.background='#e8ddc8';this.style.minHeight='180px';this.removeAttribute('src')" />
-        <div class="track-body">
-          <div class="track-num">03</div>
-          <div class="track-title">Trying To Be Nice</div>
-          <div class="track-sub">Single · 2024</div>
-          <button class="play-btn" onclick="togglePlayer('player-3','https://open.spotify.com/embed/track/3wJ0oHbrKZ1XzOSPfNeZSy?utm_source=generator&theme=0')">
-            <svg width="10" height="12" viewBox="0 0 10 12" fill="white"><polygon points="0,0 10,6 0,12"/></svg>
-          </button>
-        </div>
-        <div id="player-3" style="display:none; height:80px; overflow:hidden;">
-          <iframe style="border-radius:0;width:100%;height:80px;border:none;" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="margin-top: 14px; border-top: 1px solid rgba(60,60,60,0.1); padding-top: 14px;">
-      <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(60,60,60,0.4); margin-bottom: 12px;">Latest release</div>
-      <div style="background: var(--white); border: 1.5px solid var(--orange); border-radius: 8px; overflow: hidden;">
-        <div style="display: flex; gap: 20px; align-items: center;">
-          <img src="https://i.scdn.co/image/ab67616d0000b273acad130a3e3ed65e9b11672a" alt="Stay Inside artwork"
-            style="width: 110px; height: 110px; object-fit: cover; flex-shrink: 0; display: block;"
-            onerror="this.style.background='#e8ddc8';this.removeAttribute('src')" />
-          <div style="flex: 1; padding: 0 4px;">
-            <div style="font-family: var(--mono); font-size: 10px; color: var(--orange); margin-bottom: 6px;">2025</div>
-            <div style="font-family: var(--serif); font-size: 22px; color: var(--asphalt); margin-bottom: 4px;">Stay Inside</div>
-            <div style="font-family: var(--mono); font-size: 11px; color: var(--asphalt-pale);">Single</div>
-          </div>
-          <div style="padding-right: 24px;">
-            <button class="play-btn" onclick="togglePlayer('player-4','https://open.spotify.com/embed/album/4otkGZeNqs3Gw16QdK5c8F?utm_source=generator&theme=0')">
-              <svg width="10" height="12" viewBox="0 0 10 12" fill="white"><polygon points="0,0 10,6 0,12"/></svg>
-            </button>
-          </div>
-        </div>
-        <div id="player-4" style="display:none; height:80px; overflow:hidden;">
-          <iframe style="border-radius:0;width:100%;height:80px;border:none;" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="stream-row">
+    <div class="stream-row" style="margin-bottom: 20px;">
       <a class="stream-chip" href="https://open.spotify.com/artist/2HSR4tlAGhQWGG0gyBIIf9" target="_blank">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <circle cx="7" cy="7" r="6.5" fill="#1DB954"/>
@@ -684,6 +618,63 @@
         Apple Music
       </a>
     </div>
+
+    <div class="music-grid">
+
+      <div id="track-1" class="track" onclick="openPlayer('https://open.spotify.com/embed/track/2r3abv0suLfXCIOL9MiZ06?utm_source=generator&theme=0', 'track-1')" style="cursor:pointer;">
+        <img class="track-art" src="https://i.scdn.co/image/ab67616d0000b273d43720995af603814ef9b665" alt="Sleeping In artwork" onerror="this.style.background='#e8ddc8';this.style.minHeight='180px';this.removeAttribute('src')" />
+        <div class="track-body">
+          <div class="track-num">01</div>
+          <div class="track-title">Sleeping In</div>
+          <div class="track-sub">Single · 2022</div>
+        </div>
+      </div>
+
+      <div id="track-2" class="track" onclick="openPlayer('https://open.spotify.com/embed/track/69GcEGjRiHq6zyhFhUJEuL?utm_source=generator&theme=0', 'track-2')" style="cursor:pointer;">
+        <img class="track-art" src="https://i.scdn.co/image/ab67616d0000b2732fb346cb127d8218bcb065d5" alt="rare and raw artwork" onerror="this.style.background='#e8ddc8';this.style.minHeight='180px';this.removeAttribute('src')" />
+        <div class="track-body">
+          <div class="track-num">02</div>
+          <div class="track-title">rare and raw</div>
+          <div class="track-sub">EP · 2023</div>
+        </div>
+      </div>
+
+      <div id="track-3" class="track" onclick="openPlayer('https://open.spotify.com/embed/track/3wJ0oHbrKZ1XzOSPfNeZSy?utm_source=generator&theme=0', 'track-3')" style="cursor:pointer;">
+        <img class="track-art" src="https://i.scdn.co/image/ab67616d0000b273d71b755f93f3304c9364957e" alt="Trying To Be Nice artwork" onerror="this.style.background='#e8ddc8';this.style.minHeight='180px';this.removeAttribute('src')" />
+        <div class="track-body">
+          <div class="track-num">03</div>
+          <div class="track-title">Trying To Be Nice</div>
+          <div class="track-sub">Single · 2024</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Floating bottom-right player -->
+    <div id="sticky-player" style="display:none; position:fixed; bottom:24px; right:24px; z-index:999; background:#1a1a1a; border:2px solid var(--orange); border-radius:12px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.45); width:320px;">
+      <div style="display:flex; justify-content:flex-end; padding:6px 8px 0;">
+        <button onclick="closeStickyPlayer()" style="background:none; border:none; color:rgba(244,237,224,0.5); font-size:16px; cursor:pointer; padding:0; line-height:1;">✕</button>
+      </div>
+      <iframe id="sticky-iframe" style="width:100%; height:80px; border:none; display:block;" src="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div style="margin-top: 14px; border-top: 1px solid rgba(60,60,60,0.1); padding-top: 14px;">
+      <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(60,60,60,0.4); margin-bottom: 12px;">Latest release</div>
+      <div id="track-latest" style="background: var(--white); border: 1.5px solid rgba(60,60,60,0.12); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s; max-width: 420px;" onclick="openPlayer('https://open.spotify.com/embed/album/4otkGZeNqs3Gw16QdK5c8F?utm_source=generator&theme=0', 'track-latest')" onmouseover="this.style.transform='scale(1.02)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.13)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <img src="https://i.scdn.co/image/ab67616d0000b273acad130a3e3ed65e9b11672a" alt="Stay Inside artwork"
+            style="width: 110px; height: 110px; object-fit: cover; flex-shrink: 0; display: block;"
+            onerror="this.style.background='#e8ddc8';this.removeAttribute('src')" />
+          <div style="flex: 1; padding: 0 4px;">
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--orange); margin-bottom: 6px;">2025</div>
+            <div style="font-family: var(--serif); font-size: 22px; color: var(--asphalt); margin-bottom: 4px;">Stay Inside</div>
+            <div style="font-family: var(--mono); font-size: 11px; color: var(--asphalt-pale);">Single</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
   </section>
 
   <div class="stripe"><canvas class="lava-canvas"></canvas></div>
@@ -938,6 +929,47 @@
     }
 
     loadCounts();
+
+    var activeTrackId = null;
+
+    function openPlayer(src, trackId) {
+      // Clear previous active border
+      if (activeTrackId) {
+        var prev = document.getElementById(activeTrackId);
+        if (prev) prev.style.borderColor = 'rgba(60,60,60,0.12)';
+      }
+      // Set new active border
+      activeTrackId = trackId;
+      var el = document.getElementById(trackId);
+      if (el) el.style.borderColor = 'var(--orange)';
+
+      var player = document.getElementById('sticky-player');
+      var iframe = document.getElementById('sticky-iframe');
+      iframe.src = src + '&autoplay=1';
+      player.style.display = 'block';
+    }
+
+    function closeStickyPlayer() {
+      document.getElementById('sticky-player').style.display = 'none';
+      document.getElementById('sticky-iframe').src = '';
+      if (activeTrackId) {
+        var el = document.getElementById(activeTrackId);
+        if (el) el.style.borderColor = 'rgba(60,60,60,0.12)';
+        activeTrackId = null;
+      }
+    }
+
+    // Spacebar controls Spotify iframe when player is open
+    document.addEventListener('keydown', function(e) {
+      if (e.code !== 'Space') return;
+      var player = document.getElementById('sticky-player');
+      if (player.style.display === 'none') return;
+      // Only intercept if not typing in an input
+      if (['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)) return;
+      e.preventDefault();
+      var iframe = document.getElementById('sticky-iframe');
+      iframe.contentWindow.postMessage({command: 'toggle'}, '*');
+    });
 
     function togglePlayer(id, src) {
       var players = ['player-1','player-2','player-3','player-4'];
